@@ -22,4 +22,4 @@ jobs:
       - name: docker push
         uses: actions/docker/cli@master
         with:
-          args: push snk0202/github-action-example-node
+          args: push snk0202/poc-prod
