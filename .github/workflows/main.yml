@@ -13,7 +13,9 @@ jobs:
       - name: docker build
         uses: actions/docker/cli@master
         with:
-          args: build -t snk0202/github-action-example-node:$(date +%Y%m%d%H%M%S) .
+          args: build -t snk0202/github-action-example-node:$HELLO .
+	  env: 
+            HELLO: (date +%Y%m%d%H%M%S)
       - name: docker login
         uses: actions/docker/login@master
         env:
