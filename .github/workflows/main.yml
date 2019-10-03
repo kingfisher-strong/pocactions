@@ -1,6 +1,10 @@
-on: [push, pull_request]
-  branches: 
-    - master
+on: 
+  push:
+    branches: 
+      - master
+  pull_request:
+     branches: 
+       - master
 name: npm install, build and publish
 jobs:
   build-and-publish:
