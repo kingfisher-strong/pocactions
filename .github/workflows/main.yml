@@ -15,7 +15,7 @@ jobs:
         with:
           args: build -t snk0202/github-action-example-node:$HELLO .
 	  env: 
-            HELLO: (date +%Y%m%d%H%M%S)
+            - HELLO: (date +%Y%m%d%H%M%S)
       - name: docker login
         uses: actions/docker/login@master
         env:
