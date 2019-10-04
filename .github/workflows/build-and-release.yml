@@ -1,0 +1,26 @@
+name: Build and Release
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@master
+      - name: Use Node.js
+        uses: actions/setup-node@master
+        with:
+          node-version: 10.x
+      - name: Create GitHub Release
+        run: |
+          bash release.sh github
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_CLI_TOKEN }}
