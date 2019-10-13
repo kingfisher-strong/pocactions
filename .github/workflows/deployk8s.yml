@@ -50,7 +50,7 @@ jobs:
           PROJECT: ${{secrets.PROJECT_ID}}
           APP: ${{secrets.APP}}
 
-      - name: Get K8s Auth
+      - name: Get K8s cluster Auth
         uses: actions/gcloud/cli@df59b3263b6597df4053a74e4e4376c045d9087e
         #needs: [Push Image to Registery]
         with:
