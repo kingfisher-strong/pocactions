@@ -37,7 +37,7 @@ jobs:
 
       - name: Get Gcloud Auth
         uses: actions/gcloud/cli@df59b3263b6597df4053a74e4e4376c045d9087e
-        needs: [Build docker image, Get auth for google cloud]
+        #        needs: [Build docker image, Get auth for google cloud]
         with:
           args: auth configure-docker --quiet
         env: 
@@ -45,7 +45,7 @@ jobs:
 
       - name: Push Image to Registery
         uses: actions/gcloud/cli@df59b3263b6597df4053a74e4e4376c045d9087e
-        needs: [Get Gcloud Auth]
+        #needs: [Get Gcloud Auth]
         with:
           args: docker --push gcr.io/$PROJECT/$APP
         env: 
@@ -54,7 +54,7 @@ jobs:
 
       - name: Get K8s Auth
         uses: actions/gcloud/cli@df59b3263b6597df4053a74e4e4376c045d9087e
-        needs: [Push Image to Registery]
+        #needs: [Push Image to Registery]
         with:
           args: container clusters get-credentials $CLUSTER_NAME --zone us-central1-a --project $PROJECT 
         env: 
