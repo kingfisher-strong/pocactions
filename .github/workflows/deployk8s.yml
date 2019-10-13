@@ -12,7 +12,9 @@ jobs:
       - uses: actions/checkout@master
       - name: Build docker image
         run: docker build -t githubactions .
-    
+   
+      - name: print docker version
+        run: echo $(docker -v)
       - name: Get auth for google cloud
         uses: actions/gcloud/auth@df59b3263b6597df4053a74e4e4376c045d9087e
         env: 
