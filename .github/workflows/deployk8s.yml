@@ -22,7 +22,7 @@ jobs:
 
       - name: Tag Docker for gcloud
         #needs: [Build docker image, Get auth for google cloud]
-        run: docker tag githubactions gcr.io/$PROJECT/$APP
+        run: docker tag githubactions gcr.io/$PROJECT_ID/$APP
         env: 
           PROJECT: ${{secrets.PROJECT}}
           APP: ${{secrets.APP}}
