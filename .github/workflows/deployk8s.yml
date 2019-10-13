@@ -11,9 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - name: Build docker image
-        uses: actions/docker/cli@master
-        with:
-          args: build -t githubactions .
+        run: build -t githubactions .
     
       - name: Get auth for google cloud
         uses: actions/gcloud/auth@df59b3263b6597df4053a74e4e4376c045d9087e
