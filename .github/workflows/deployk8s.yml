@@ -19,10 +19,8 @@ jobs:
           GCLOUD_AUTH: ${{secrets.GCLOUD_AUTH}}
 
       - name: Tag Docker for gcloud
-        uses: actions/docker/tag@8cdf801b322af5f369e00d85e9cf3a7122f49108
         #needs: [Build docker image, Get auth for google cloud]
-        with:
-          args: githubactions gcr.io/$PROJECT/$APP
+        run: githubactions gcr.io/$PROJECT/$APP
         env: 
           PROJECT: ${{secrets.PROJECT}}
           APP: ${{secrets.APP}}
