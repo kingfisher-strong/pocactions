@@ -24,7 +24,7 @@ jobs:
         #needs: [Build docker image, Get auth for google cloud]
         run: docker tag githubactions gcr.io/$PROJECT_ID/$APP
         env: 
-          PROJECT: ${{secrets.PROJECT}}
+          PROJECT: ${{secrets.PROJECT_ID}}
           APP: ${{secrets.APP}}
 
       - name: Setup google cloud
@@ -47,7 +47,7 @@ jobs:
         with:
           args: docker -- push gcr.io/$PROJECT_ID/$APP
         env: 
-          PROJECT: ${{secrets.PROJECT}}
+          PROJECT: ${{secrets.PROJECT_ID}}
           APP: ${{secrets.APP}}
 
       - name: Get K8s Auth
