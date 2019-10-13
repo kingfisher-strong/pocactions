@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - name: Build docker image
-        uses: actions/docker/cli@aea64bb1b97c42fa69b90523667fef56b90d7cff
+        uses: actions/docker/cli@master
         with:
           args: build -t githubactions .
     
