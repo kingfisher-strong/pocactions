@@ -68,8 +68,6 @@ jobs:
         env: 
           GCLOUD_AUTH: ${{secrets.GCLOUD_AUTH}}
           PROJECT: ${{secrets.PROJECT}}
-        uses: 
-          #needs: [Get K8s Auth]
           CLUSTER_NAME: ${{secrets.CLUSTER_NAME}}
  
           #action "Update Deployment" {
