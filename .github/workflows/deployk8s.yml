@@ -51,13 +51,13 @@ jobs:
           APP: ${{secrets.APP}}
 
       - name: Get K8s cluster Auth
-        uses: actions/gcloud/cli@df59b3263b6597df4053a74e4e4376c045d9087e
+        uses: actions/gcloud/cli@8ec8bfa
         #needs: [Push Image to Registery]
         with:
-          args: container clusters get-credentials $CLUSTER_NAME --zone us-central1-a --project $PROJECT 
+          args: container clusters get-credentials $CLUSTER_NAME --zone us-central1-a --project $PROJECT_ID 
         env: 
           GCLOUD_AUTH: ${{secrets.GCLOUD_AUTH}}
-          PROJECT: ${{secrets.PROJECT}}
+          PROJECT: ${{secrets.PROJECT_ID}}
           CLUSTER_NAME: ${{secrets.CLUSTER_NAME}}
         
           #      - name: Update Deployment
