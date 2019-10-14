@@ -60,15 +60,15 @@ jobs:
           PROJECT: ${{secrets.PROJECT_ID}}
           CLUSTER_NAME: ${{secrets.CLUSTER_NAME}}
         
-          #      - name: Update Deployment
-          #uses: docker://gcr.io/cloud-builders/kubectl 
+      - name: Update Deployment
+        uses: docker://gcr.io/cloud-builders/kubectl 
           #needs: [Get K8s Auth]
-          #with:
-          #args: container clusters get-credentials $CLUSTER_NAME --zone us-central1-a --project $PROJECT 
-          #env: 
-          #GCLOUD_AUTH: ${{secrets.GCLOUD_AUTH}}
-          #PROJECT: ${{secrets.PROJECT}}
-          #CLUSTER_NAME: ${{secrets.CLUSTER_NAME}}
+        with:
+          args: kubectl set image deployment/testdep testdep=gcr.io/github-actions-test-255116/$APP
+        env: 
+          GCLOUD_AUTH: ${{secrets.GCLOUD_AUTH}}
+          PROJECT: ${{secrets.PROJECT}}
+          CLUSTER_NAME: ${{secrets.CLUSTER_NAME}}
  
           #action "Update Deployment" {
           #  uses = "docker://gcr.io/cloud-builders/kubectl"
