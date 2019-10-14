@@ -61,13 +61,15 @@ jobs:
           CLUSTER_NAME: ${{secrets.CLUSTER_NAME}}
         
       - name: Update Deployment
-        uses: actions/gcloud/cli@8ec8bfa
+        uses: docker://gcr.io/cloud-builders/kubectl
           #needs: [Get K8s Auth]
         with:
-          args: kubectl set image deployment/testdep testdep=gcr.io/github-actions-test-255116/$APP
+          args: set image deployment/testdep testdep=gcr.io/github-actions-test-255116/$APP
         env: 
           GCLOUD_AUTH: ${{secrets.GCLOUD_AUTH}}
           PROJECT: ${{secrets.PROJECT}}
+        uses: 
+          #needs: [Get K8s Auth]
           CLUSTER_NAME: ${{secrets.CLUSTER_NAME}}
  
           #action "Update Deployment" {
