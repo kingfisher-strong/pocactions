@@ -54,7 +54,7 @@ jobs:
         uses: actions/gcloud/cli@8ec8bfa
         #needs: [Push Image to Registery]
         with:
-          args: container clusters get-credentials $CLUSTER_NAME --zone us-central1-a --project $PROJECT_ID 
+          args: container clusters get-credentials $CLUSTER_NAME --zone us-central1-a --project github-actions-test-255116 
         env: 
           GCLOUD_AUTH: ${{secrets.GCLOUD_AUTH}}
           PROJECT: ${{secrets.PROJECT_ID}}
