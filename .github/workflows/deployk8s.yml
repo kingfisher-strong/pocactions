@@ -23,7 +23,7 @@ jobs:
 
       - name: Tag Docker FOR gcloud
         #needs: [Build docker image, Get auth for google cloud]
-        run: docker tag githubactions gcr.io/github-actions-test-255116/$APP
+        run: docker tag githubactions gcr.io/github-actions-test-255116/$APP:${{github.sha}}
         env: 
           PROJECT: ${{secrets.PROJECT_ID}}
           APP: ${{secrets.APP}}
@@ -46,7 +46,7 @@ jobs:
         uses: actions/gcloud/cli@df59b3263b6597df4053a74e4e4376c045d9087e
         #needs: [Get Gcloud Auth]
         with:
-          args: docker -- push gcr.io/github-actions-test-255116/$APP
+          args: docker -- push gcr.io/github-actions-test-255116/$APP:${{github.sha}}
         env: 
           PROJECT: ${{secrets.PROJECT_ID}}
           APP: ${{secrets.APP}}
@@ -55,7 +55,7 @@ jobs:
         uses: actions/gcloud/cli@8ec8bfa
         #needs: [Push Image to Registery]
         with:
-          args: container clusters get-credentials $CLUSTER_NAME --zone us-central1-a --project github-actions-test-255116 && gcloud components install kubectl && kubectl set image deployment/testdep testdep=gcr.io/github-actions-test-255116/$APP:latest
+          args: container clusters get-credentials $CLUSTER_NAME --zone us-central1-a --project github-actions-test-255116 && gcloud components install kubectl && kubectl set image deployment/testdep testdep=gcr.io/github-actions-test-255116/$APP:${{github.sha}}
         env: 
           GCLOUD_AUTH: ${{secrets.GCLOUD_AUTH}}
           PROJECT: ${{secrets.PROJECT_ID}}
