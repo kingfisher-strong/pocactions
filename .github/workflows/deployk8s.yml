@@ -61,6 +61,19 @@ jobs:
           PROJECT: ${{secrets.PROJECT_ID}}
           CLUSTER_NAME: ${{secrets.CLUSTER_NAME}}
           APP: ${{secrets.APP}}
+
+
+# secrets.APP -  this is GCR repo name
+
+# secrets.CLUSTER_NAME -  GKE cluster name
+
+# secrets.PROJECT_ID - something like this - github-actions-test-255116
+
+# service account with access to gcr, gke and required stuff 
+
+
+
+
         
       # - name: Update Deployment
       #   uses: docker://gcr.io/cloud-builders/kubectl
