@@ -59,6 +59,7 @@ jobs:
           GCLOUD_AUTH: ${{secrets.GCLOUD_AUTH}}
           PROJECT: ${{secrets.PROJECT_ID}}
           CLUSTER_NAME: ${{secrets.CLUSTER_NAME}}
+          APP: ${{secrets.APP}}
         
       - name: Update Deployment
         uses: docker://gcr.io/cloud-builders/kubectl
