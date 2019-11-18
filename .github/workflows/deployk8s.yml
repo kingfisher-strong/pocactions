@@ -15,6 +15,7 @@ jobs:
    
       - name: print docker version
         run: echo $(docker -v)
+
       - name: Get auth for google cloud
         uses: actions/gcloud/auth@df59b3263b6597df4053a74e4e4376c045d9087e
         env: 
@@ -50,26 +51,26 @@ jobs:
           PROJECT: ${{secrets.PROJECT_ID}}
           APP: ${{secrets.APP}}
 
-      - name: Get K8s cluster Auth
+      - name: Get K8s cluster Auth And Update Kubernetes deployment 
         uses: actions/gcloud/cli@8ec8bfa
         #needs: [Push Image to Registery]
         with:
-          args: container clusters get-credentials $CLUSTER_NAME --zone us-central1-a --project github-actions-test-255116 && gcloud components install kubectl && kubectl set image deployment/testdep testdep=gcr.io/github-actions-test-255116/$APP
+          args: container clusters get-credentials $CLUSTER_NAME --zone us-central1-a --project github-actions-test-255116 && gcloud components install kubectl && kubectl set image deployment/testdep testdep=gcr.io/github-actions-test-255116/$APP:latest
         env: 
           GCLOUD_AUTH: ${{secrets.GCLOUD_AUTH}}
           PROJECT: ${{secrets.PROJECT_ID}}
           CLUSTER_NAME: ${{secrets.CLUSTER_NAME}}
           APP: ${{secrets.APP}}
         
-      - name: Update Deployment
-        uses: docker://gcr.io/cloud-builders/kubectl
-          #needs: [Get K8s Auth]
-        with:
-          args: set image deployment/testdep testdep=gcr.io/github-actions-test-255116/$APP
-        env: 
-          GCLOUD_AUTH: ${{secrets.GCLOUD_AUTH}}
-          PROJECT: ${{secrets.PROJECT}}
-          CLUSTER_NAME: ${{secrets.CLUSTER_NAME}}
+      # - name: Update Deployment
+      #   uses: docker://gcr.io/cloud-builders/kubectl
+      #     #needs: [Get K8s Auth]
+      #   with:
+      #     args: set image deployment/testdep testdep=gcr.io/github-actions-test-255116/$APP
+      #   env: 
+      #     GCLOUD_AUTH: ${{secrets.GCLOUD_AUTH}}
+      #     PROJECT: ${{secrets.PROJECT}}
+      #     CLUSTER_NAME: ${{secrets.CLUSTER_NAME}}
  
           #action "Update Deployment" {
           #  uses = "docker://gcr.io/cloud-builders/kubectl"
