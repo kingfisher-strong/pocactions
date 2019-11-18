@@ -3,7 +3,7 @@ const port = process.env.PORT || 3000;
 
 const server = http.createServer((req, res) => {
   res.statusCode = 200;
-  res.end('Hello this is an update to master\n');
+  res.end('Hello , this time installing kubectl inside gcloud shell\n');
 });
 
 server.listen(port, () => {
